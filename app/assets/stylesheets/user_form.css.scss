@@ -1,0 +1,26 @@
+.form-wrapper {
+	margin: 30px;
+
+	.form-group {
+		&.has-danger {
+			color: #cc0000;
+			label {
+				color: #333333;
+			}
+		}
+	}
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+	width: 600px;
+	margin: 20px auto;
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-md-min) {
+	.form-wrapper {
+		width: 600px;
+		margin: 20px auto;
+	}
+}
