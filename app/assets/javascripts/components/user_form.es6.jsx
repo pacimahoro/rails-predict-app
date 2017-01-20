@@ -59,13 +59,12 @@ class UserForm extends React.Component {
         $.ajax({
             url: '/api/v1/users',
             type: 'POST',
-            data: data
+            data: {user: data}
         })
         .then((response) => {
             console.log('success: ', response);
-        })
-        .error(() => {
-            console.error('Error: ', arguments);
+        }, (err) => {
+            console.error('Error: ', err);
         });
     }
 
