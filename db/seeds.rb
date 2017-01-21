@@ -9,3 +9,7 @@ User.create([
 	{name: 'John Doe', height:6.2, weight: 150, created_time: Date.today.to_s},
 	{name: 'Jane Smith', height:5.2, weight: 130, created_time: Date.today.to_s}
 	])
+
+Prediction.create([
+	{user_id: 1, height:6.2, weight: 150, actual: 'dog', forecast: 'dog'};
+	])

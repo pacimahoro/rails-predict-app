@@ -34,7 +34,7 @@ class UserForm extends React.Component {
         e.preventDefault();
         console.log(e.target.value);
         const {name, value} = e.target;
-        if (name && value) {
+        if (name) {
             this.setState({[name]: value});
         }
     }
@@ -60,6 +60,19 @@ class UserForm extends React.Component {
             url: '/api/v1/users',
             type: 'POST',
             data: {user: data}
+        })
+        .then((response) => {
+            console.log('success: ', response);
+        }, (err) => {
+            console.error('Error: ', err);
+        });
+    }
+
+    onMakePrediction (data) {
+        $.ajax({
+            url: '/api/v1/predictions',
+            type: 'POST',
+            data: {prediction: data}
         })
         .then((response) => {
             console.log('success: ', response);

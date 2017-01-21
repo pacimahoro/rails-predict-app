@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  height: 9.99
+  weight: 9.99
+  actual: "dog"
+  forecast: "cat"
+
+two:
+  user_id: 1
+  height: 9.99
+  weight: 9.99
+  actual: 1
+  forecast: 1
