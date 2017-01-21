@@ -23,24 +23,24 @@ class Api::V1::PredictionsController < Api::V1::BaseController
 		logger.debug 'Prediction Class: ' + response['output']
 
 		guess[:forecast] = response['output']
+		logger.debug guess
 		@prediction = Prediction.create(guess)
-		# redirect_to @prediction
-		respond_with :api, :v1, @prediction
+		respond_with @prediction, json: @prediction
 	end
 
 	def destroy
 		respond_with Prediction.destroy(params[:id])
 	end
 
-	# def update
-	# 	prediction = Prediction.find(params["id"])
-	# 	prediction.update_attributes(prediction_params)
-	# 	respond_with prediction, json: prediction
-	# end
-	#
-	# private
-	#
-	# def prediction_params
-	# 	params.require(:prediction).permit(:id, :name, :height, :weight, :actual, :forecast)
-	# end
+	def update
+		prediction = Prediction.find(params["id"])
+		prediction.update_attributes(prediction_params)
+		respond_with prediction, json: prediction
+	end
+
+	private
+
+	def prediction_params
+		params.require(:prediction).permit(:id, :user_id, :height, :weight, :actual, :forecast)
+	end
 end

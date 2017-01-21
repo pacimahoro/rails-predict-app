@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170120183307) do
+ActiveRecord::Schema.define(version: 20170120183309) do
 
   create_table "predictions", force: :cascade do |t|
     t.integer  "user_id"
     t.decimal  "height"
     t.decimal  "weight"
     t.integer  "actual"
-    t.integer  "forecast"
+    t.string   "forecast"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

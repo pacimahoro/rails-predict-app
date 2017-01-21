@@ -11,5 +11,5 @@ two:
   user_id: 1
   height: 9.99
   weight: 9.99
-  actual: 1
-  forecast: 1
+  actual: "dog"
+  forecast: "dog"
