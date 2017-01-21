@@ -1,4 +1,4 @@
-.form-wrapper {
+.user-form-container {
 	margin: 30px;
 
 	.form-group {
@@ -13,13 +13,16 @@
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: $screen-sm-min) {
-	width: 600px;
-	margin: 20px auto;
+	.user-form-container {
+		width: 600px;
+		margin: 20px auto;
+	}
+
 }
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: $screen-md-min) {
-	.form-wrapper {
+	.user-form-container {
 		width: 600px;
 		margin: 20px auto;
 	}

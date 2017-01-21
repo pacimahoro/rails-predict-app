@@ -17,5 +17,6 @@
 //= require bootstrap-sprockets
 //= require react
 //= require react_ujs
+//= require react-modal-v1.6.5
 //= require components
 //= require_tree .

@@ -31,7 +31,6 @@ class Form extends React.Component {
         super(props);
 
         // Get field names. this.state.name,...etc
-        debugger;
         const s = _.keys(this.props.schema || {}).reduce((acc, o) => {
             acc[o] = '';
             return acc;

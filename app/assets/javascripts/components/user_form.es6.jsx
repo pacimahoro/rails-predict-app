@@ -1,5 +1,5 @@
 
-const FIELDS = {
+const USER_FIELDS = {
     name: {
         type: 'input',
         label: 'Name',
@@ -18,6 +18,17 @@ const FIELDS = {
 }
 
 class UserForm extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isModalOpen: false,
+            forecast: '',
+            height: null,
+            width: null
+        }
+    }
+
     onSubmit (data) {
         $.ajax({
             url: '/api/v1/users',
@@ -39,22 +50,41 @@ class UserForm extends React.Component {
         })
         .then((response) => {
             console.log('success: ', response);
+            this.setState({
+                isModalOpen: true,
+                forecast: response.forecast,
+                height: parseFloat(response.height),
+                weight: parseFloat(response.weight)
+            });
         }, (err) => {
             console.error('Error: ', err);
         });
     }
 
     render () {
+        const {isModalOpen} = this.state;
         return (
             <div className="user-form-container">
-                <Form
-                    schema = {FIELDS}
-                    onSubmit = {this.onMakePrediction.bind(this)}
-                    renderSubmit = {this.renderSubmit}
-                    title = "Cat or Dog Lover? We can guess"
-                />
+                {isModalOpen ? this.showResult() : this.askForm()}
             </div>
         );
+    }
+
+    askForm () {
+        return <Form
+            schema = {USER_FIELDS}
+            onSubmit = {this.onMakePrediction.bind(this)}
+            renderSubmit = {this.renderSubmit}
+            title = "Cat or Dog Lover? We can guess"
+        />
+    }
+
+    showResult () {
+        const { forecast, height, weight } = this.state;
+
+        return (
+            <UserResult forecast={forecast} weight={weight} weight={weight} />
+        )
     }
 
     renderSubmit () {
