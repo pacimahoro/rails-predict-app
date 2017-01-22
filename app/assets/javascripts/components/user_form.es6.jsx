@@ -22,8 +22,8 @@ class UserForm extends React.Component {
         super(props);
 
         this.state = {
-            isModalOpen: false,
-            forecast: '',
+            hasResults: this.props.hasResults,
+            forecast: this.props.forecast,
             height: null,
             width: null
         }
@@ -51,7 +51,7 @@ class UserForm extends React.Component {
         .then((response) => {
             console.log('success: ', response);
             this.setState({
-                isModalOpen: true,
+                hasResults: true,
                 forecast: response.forecast,
                 height: parseFloat(response.height),
                 weight: parseFloat(response.weight)
@@ -62,32 +62,51 @@ class UserForm extends React.Component {
     }
 
     render () {
-        const {isModalOpen} = this.state;
+        const {hasResults} = this.state;
         return (
             <div className="user-form-container">
-                {isModalOpen ? this.showResult() : this.askForm()}
+                {hasResults ? this.showResult() : this.askForm()}
             </div>
         );
     }
 
     askForm () {
-        return <Form
-            schema = {USER_FIELDS}
-            onSubmit = {this.onMakePrediction.bind(this)}
-            renderSubmit = {this.renderSubmit}
-            title = "Cat or Dog Lover? We can guess"
-        />
+        return (
+            <Form
+               schema = {USER_FIELDS}
+               onSubmit = {this.onMakePrediction.bind(this)}
+               renderSubmit = {this.renderSubmit}
+               title = "Cat or Dog Lover? We can guess"
+               ref = "userForm"
+           />
+        )
+
     }
 
     showResult () {
         const { forecast, height, weight } = this.state;
 
         return (
-            <UserResult forecast={forecast} weight={weight} weight={weight} />
+            <UserResult
+                forecast={forecast}
+                weight={weight}
+                weight={weight}
+                ref="userFormResults"
+            />
         )
     }
 
     renderSubmit () {
         return <button type="submit" className="btn btn-primary">Make a Guess</button>;
     }
+}
+
+UserForm.propTypes = {
+    hasResults: React.PropTypes.bool,
+    forecast: React.PropTypes.string
+}
+
+UserForm.defaultProps = {
+    hasResults: false,
+    forecast: ''
 }
