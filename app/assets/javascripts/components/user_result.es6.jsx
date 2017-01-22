@@ -6,24 +6,45 @@ class UserResult extends React.Component {
 		return (
 			<Form
 				schema={FIELDS}
-				onSubmit={this.onSubmit.bind(this)}
-				renderSubmit={this.renderSubmit}
+				onSubmit={(data, e) => this.onSubmit(data, e)}
+				renderSubmit={this.renderSubmit.bind(this)}
 				title="Did we guess it right?"
 			/>
 		)
 	}
 
-	onSubmit (data) {
-		console.log("Need to submit the form changes")
+	onSubmit (data, e) {
+		// Do nothing intentionally.
+		// Actions will be handled based on the review buttons selected.
 	}
 
 	renderSubmit () {
 		return (
 			<div className="footer">
-				<button type="submit" className="btn btn-primary">Yep! You got it!</button>
-				<button type="submit" className="btn btn-danger">Nop, you missed!</button>
+				{this.renderReviewBtn('btn-primary', 'Yep! You got it!', true)}
+				{this.renderReviewBtn('btn-danger', 'Nop, you missed!', false)}
 			</div>
 		)
+	}
+
+	renderReviewBtn(cls, text, value) {
+		return (
+			<button
+				type="button"
+				className={`btn ${cls}`}
+				onClick={() => this.isPredictionCorrect(value)}>
+				{text}
+			</button>
+		)
+	}
+
+	isPredictionCorrect(value) {
+		const {forecast, id} = this.props;
+		const opposite = forecast === 'dog' ? 'cat' : 'dog'
+		const actual = value ? forecast : opposite
+		if (this.props.onSubmit) {
+			this.props.onSubmit({ actual, id });
+		}
 	}
 
 	render () {
@@ -39,8 +60,8 @@ class UserResult extends React.Component {
 
 UserResult.propTypes = {
   user_id: React.PropTypes.string,
-  id: React.PropTypes.string,
-  forecast: React.PropTypes.string.required,
+  id: React.PropTypes.number,
+  forecast: React.PropTypes.string.isRequired,
   height: React.PropTypes.number,
   weight: React.PropTypes.number
 };

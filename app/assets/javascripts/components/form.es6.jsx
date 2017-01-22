@@ -61,12 +61,12 @@ class Form extends React.Component {
             _.map(this.props.schema, (v, k) => {
                 return values[k] = this.state[k]
             });
-            this.onSubmit(values);
+            this.onSubmit(values, e);
         }
     }
 
-    onSubmit (data) {
-        this.props.onSubmit(data);
+    onSubmit (data, e) {
+        this.props.onSubmit(data, e);
     }
 
     onInputBlur (e) {

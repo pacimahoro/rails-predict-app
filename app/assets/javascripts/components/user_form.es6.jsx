@@ -54,7 +54,31 @@ class UserForm extends React.Component {
                 hasResults: true,
                 forecast: response.forecast,
                 height: parseFloat(response.height),
-                weight: parseFloat(response.weight)
+                weight: parseFloat(response.weight),
+                id: response.id
+            });
+        }, (err) => {
+            console.error('Error: ', err);
+        });
+    }
+
+    onResultResponse(data) {
+        $.ajax({
+            url: `/api/v1/predictions/${data.id}`,
+            type: 'PUT',
+            data: {prediction: data}
+        })
+        .then((response) => {
+            console.log('success: ', response);
+            alert('Thanks for your feedback! Try it again?');
+
+            // Reset everything to start over again.
+            this.setState({
+                hasResults: false,
+                id: null,
+                forecast: '',
+                height: '',
+                weight: ''
             });
         }, (err) => {
             console.error('Error: ', err);
@@ -84,14 +108,16 @@ class UserForm extends React.Component {
     }
 
     showResult () {
-        const { forecast, height, weight } = this.state;
+        const { forecast, height, weight, id } = this.state;
 
         return (
             <UserResult
                 forecast={forecast}
                 weight={weight}
                 weight={weight}
+                id={id}
                 ref="userFormResults"
+                onSubmit={(data) => this.onResultResponse(data)}
             />
         )
     }
