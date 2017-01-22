@@ -1,22 +1,12 @@
 # README
-# This is my first project with React-rails.
-# We will try to detect whether or not, our predictions were correct. 
-Things you may want to cover:
+Learning using React and Rails.
+It's simple project that tries to guess whether the user likes cats or dogs
+I am using BigML linear regression (classification) to predict the likeness.
 
-* Ruby version
+* To run the program you will need to have a running of rails and bundle install to get necessary gems.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# technology used:
+** React-rails
+** Jasmine for testing
+** BigML for machine Learning
+** Rest API using rails
