@@ -118,8 +118,8 @@ class UserForm extends React.Component {
                 contentLabel="Modal"
                 style={style}>
                 <button className="btn btn-primary dismiss" onClick={this.closeModal.bind(this)}>close</button>
-                <h3>Ready to try it again?</h3>
-                <i>Thanks for your feedback!</i>
+                <h4>Thanks for your feedback!</h4>
+                <i>Ready to try it again?</i>
             </ReactModal>
         )
     }

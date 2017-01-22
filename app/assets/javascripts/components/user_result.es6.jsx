@@ -50,8 +50,8 @@ class UserResult extends React.Component {
 	render () {
 		return (
 			<div className="user-results-container">
-				<h1>Based on your info, we think you are:</h1>
-				<h2>{`A ${this.props.forecast} Lover`}</h2>
+				<h3>Based on your info, we think you are:</h3>
+				<h3>{`A ${this.props.forecast} Lover`}</h3>
 				{this.renderEvaluation()}
 			</div>
 		)
