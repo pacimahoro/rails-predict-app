@@ -7,12 +7,12 @@ const USER_FIELDS = {
     },
     height: {
         type: 'input',
-        label: 'What\'s is your height',
+        label: 'What\'s is your height (in feet, i.e. 5.10)',
         error: 'Height is required'
     },
     weight: {
         type: 'input',
-        label: "What's your weight",
+        label: "What's your weight (in lbs, i.e. 143.0)",
         error: "Weight is required"
     }
 }

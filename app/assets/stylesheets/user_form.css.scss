@@ -1,6 +1,14 @@
 .user-form-container {
 	margin: 30px;
 
+	.user-results-container {
+		.footer {
+			& > button {
+				margin-right: 40px;
+			}
+		}
+	}
+
 	.form-group {
 		&.has-danger {
 			color: #cc0000;

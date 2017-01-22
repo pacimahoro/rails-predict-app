@@ -21,7 +21,7 @@ class UserResult extends React.Component {
 		return (
 			<div className="footer">
 				<button type="submit" className="btn btn-primary">Yep! You got it!</button>
-				<button type="submit" className="btn btn-primary has-danger">Nop, you missed!</button>
+				<button type="submit" className="btn btn-danger">Nop, you missed!</button>
 			</div>
 		)
 	}

@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20170120183309) do
     t.integer  "user_id"
     t.decimal  "height"
     t.decimal  "weight"
-    t.integer  "actual"
+    t.string   "actual"
     t.string   "forecast"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
