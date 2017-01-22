@@ -2,7 +2,7 @@
 var Main = React.createClass({
 	render() {
 		return (
-			<div>
+			<div id="app-predict">
 				<UserForm />
 			</div>
 		)

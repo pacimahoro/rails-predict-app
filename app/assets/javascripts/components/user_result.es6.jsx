@@ -18,6 +18,15 @@ class UserResult extends React.Component {
 		// Actions will be handled based on the review buttons selected.
 	}
 
+	isPredictionCorrect(value) {
+		const {forecast, id} = this.props;
+		const opposite = forecast === 'dog' ? 'cat' : 'dog'
+		const actual = value ? forecast : opposite
+		if (this.props.onSubmit) {
+			this.props.onSubmit({ actual, id });
+		}
+	}
+
 	renderSubmit () {
 		return (
 			<div className="footer">
@@ -36,15 +45,6 @@ class UserResult extends React.Component {
 				{text}
 			</button>
 		)
-	}
-
-	isPredictionCorrect(value) {
-		const {forecast, id} = this.props;
-		const opposite = forecast === 'dog' ? 'cat' : 'dog'
-		const actual = value ? forecast : opposite
-		if (this.props.onSubmit) {
-			this.props.onSubmit({ actual, id });
-		}
 	}
 
 	render () {

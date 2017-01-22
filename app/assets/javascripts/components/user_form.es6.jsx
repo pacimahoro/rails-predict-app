@@ -29,6 +29,11 @@ class UserForm extends React.Component {
         }
     }
 
+    componentDidMount() {
+        const appElement = document.getElementById('app-predict');
+        ReactModal.setAppElement(appElement);
+    }
+
     onSubmit (data) {
         $.ajax({
             url: '/api/v1/users',
@@ -70,15 +75,14 @@ class UserForm extends React.Component {
         })
         .then((response) => {
             console.log('success: ', response);
-            alert('Thanks for your feedback! Try it again?');
-
             // Reset everything to start over again.
             this.setState({
                 hasResults: false,
                 id: null,
                 forecast: '',
                 height: '',
-                weight: ''
+                weight: '',
+                isModalOpen: true
             });
         }, (err) => {
             console.error('Error: ', err);
@@ -86,12 +90,42 @@ class UserForm extends React.Component {
     }
 
     render () {
-        const {hasResults} = this.state;
+        const {hasResults, isModalOpen} = this.state;
         return (
             <div className="user-form-container">
                 {hasResults ? this.showResult() : this.askForm()}
+                {isModalOpen && this.showThanks()}
             </div>
         );
+    }
+
+    showThanks () {
+        const style = {
+            overlay: {
+                backgroundColor: "rgba(0,0,0, 0.567)",
+
+            },
+            content: {
+                maxWidth: 320,
+                marginRight: "auto",
+                marginLeft: "auto"
+            }
+        }
+
+        return (
+            <ReactModal
+                isOpen={this.state.isModalOpen}
+                contentLabel="Modal"
+                style={style}>
+                <button className="btn btn-primary dismiss" onClick={this.closeModal.bind(this)}>close</button>
+                <h3>Ready to try it again?</h3>
+                <i>Thanks for your feedback!</i>
+            </ReactModal>
+        )
+    }
+
+    closeModal () {
+        this.setState({isModalOpen: false});
     }
 
     askForm () {
